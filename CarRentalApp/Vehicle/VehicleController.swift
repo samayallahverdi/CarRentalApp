@@ -9,29 +9,39 @@ import UIKit
 import RealmSwift
 
 class VehicleController: UIViewController {
-
-
+    
+    
     @IBOutlet weak var categoryCollection: UICollectionView!
     @IBOutlet weak var listCollection: UICollectionView!
     
-   let realm = try! Realm()
+    let realm = try! Realm()
     let category = ["Standard", "Prestige", "SUV"]
     var car = [CarModel]()
     var carSearch = [CarModel]()
     var search = false
     let searchController = UISearchController(searchResultsController: nil)
+    var categoryCounts: [String: Int] = [:]
+    var filteredCars: [CarModel] = []
+    var carListDataSource: [CarModel] = []
+    var selectedCellIndexPath: IndexPath?
+    var filteredCarsDataSource: [CarModel] = []
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         if let url = realm.configuration.fileURL {
             
             print(url)
         }
-       
         fetchItems()
         configureSearchController()
         CellRegistration()
+        
+        
+        
     }
 }
 
@@ -52,40 +62,110 @@ extension VehicleController: UICollectionViewDataSource, UICollectionViewDelegat
     }
     
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-     
-                if collectionView == listCollection {
-                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CarListCell", for: indexPath) as! CarListCell
         
-                    if search {
-                        cell.config(brand: carSearch[indexPath.item].brand ?? "", model: carSearch[indexPath.item].model ?? "", price: carSearch[indexPath.item].price ?? "", engine: carSearch[indexPath.item].engine ?? "", image: carSearch[indexPath.item].carImage ?? "")
-        
-                    } else {
-                        cell.config(brand: car[indexPath.item].brand ?? "", model: car[indexPath.item].model ?? "", price: car[indexPath.item].price ?? "", engine: car[indexPath.item].engine ?? "", image: car[indexPath.item].carImage ?? "")
-                    }
-                    return cell
-        
-                }
-                    else {
-                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! CategoryCell
-                    cell.carImage.image = UIImage(named: category[indexPath.item])
-                    cell.carCategoryLabel.text = category[indexPath.item]
-//                    cell.carCountLabel.text =
-//                    let category = CarCategory.allCases[indexPath.item]
-//                    cell.carCategoryLabel.text = category.rawValue
-//
-//                    if let count = categoryCounts[category.rawValue] {
-//                        cell.carCategoryCount.text = "\(count)"
-//                    } else {
-//                        cell.carCategoryCount.text = "0"
-//                    }
-                    return cell
-                }
+        if collectionView == listCollection {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CarListCell", for: indexPath) as! CarListCell
+            
+            if search {
+                cell.config(brand: carSearch[indexPath.item].brand ?? "", model: carSearch[indexPath.item].model ?? "", price: carSearch[indexPath.item].price ?? "", engine: carSearch[indexPath.item].engine ?? "", image: carSearch[indexPath.item].carImage ?? "")
+                
+            } else {
+                cell.config(brand: car[indexPath.item].brand ?? "", model: car[indexPath.item].model ?? "", price: car[indexPath.item].price ?? "", engine: car[indexPath.item].engine ?? "", image: car[indexPath.item].carImage ?? "")
             }
-      
-    }
+            return cell
+            
+        }
+        else {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! CategoryCell
+            
+            let standardCarCount = car.filter { $0.category == CarCategory.standard.rawValue }.count
+            let prestigeCarCount = car.filter { $0.category == CarCategory.prestige.rawValue }.count
+            let suvCarCount = car.filter { $0.category == CarCategory.suv.rawValue }.count
+            
+            
+            cell.carImage.image = UIImage(named: category[indexPath.item])
+            cell.carCategoryLabel.text = category[indexPath.item]
+            
+            switch category[indexPath.item] {
+            case CarCategory.standard.rawValue:
+                cell.carCountLabel.text = "\(standardCarCount)"
+            case CarCategory.prestige.rawValue:
+                cell.carCountLabel.text = "\(prestigeCarCount)"
+            case CarCategory.suv.rawValue:
+                cell.carCountLabel.text = "\(suvCarCount)"
+            default:
+                cell.carCountLabel.text = "0"
+            }
+            
+            if indexPath == selectedCellIndexPath {
+                    
+                    cell.background.backgroundColor = UIColor.blue
+                } else {
+                  
+                    cell.background.backgroundColor = UIColor.white
+                }
 
+               
+            
+            
+            return cell
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        // Background configure
+        
+        if let previousSelectedIndexPath = selectedCellIndexPath {
+              
+                let previousSelectedCell = collectionView.cellForItem(at: previousSelectedIndexPath) as? CategoryCell
+                previousSelectedCell?.background.backgroundColor = UIColor.white
+            }
+
+            selectedCellIndexPath = indexPath
+
+            let selectedCell = collectionView.cellForItem(at: indexPath) as? CategoryCell
+            selectedCell?.background.backgroundColor = UIColor.blue
+        
+       print("basanda isleyir ama sekiller gelmir")
+        print(filteredCars)
+        
+        let selectedCategory = category[indexPath.item]
+            
+        switch selectedCategory {
+               case CarCategory.standard.rawValue:
+                   filteredCars = car.filter { $0.category == CarCategory.standard.rawValue }
+               case CarCategory.prestige.rawValue:
+                   filteredCars = car.filter { $0.category == CarCategory.prestige.rawValue }
+               case CarCategory.suv.rawValue:
+                   filteredCars = car.filter { $0.category == CarCategory.suv.rawValue }
+               default:
+                   filteredCars = []
+           }
+
+//
+//           filteredCarsDataSource = filteredCars
+//           updateCarList(filteredCars: filteredCars)
+//
+//            listCollection.reloadData()
+//
+        
+        
+        
+    }
+        
+//    func updateCarList(filteredCars: [CarModel]) {
+//        carListDataSource = filteredCars
+//        listCollection.reloadData()
+//        filteredCarsDataSource = filteredCars
+//    }
+//
+}
+
+
 
 //SearchBar Configuration
 extension VehicleController: UISearchResultsUpdating, UISearchBarDelegate {
