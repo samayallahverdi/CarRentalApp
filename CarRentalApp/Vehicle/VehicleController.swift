@@ -55,7 +55,9 @@ extension VehicleController: UICollectionViewDataSource, UICollectionViewDelegat
             if collectionView == categoryCollection {
                 return category.count
             } else if collectionView == listCollection {
-                return car.count
+               
+                    return filteredCars.count
+                
             }
             return 0
         }
@@ -70,10 +72,19 @@ extension VehicleController: UICollectionViewDataSource, UICollectionViewDelegat
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CarListCell", for: indexPath) as! CarListCell
             
             if search {
-                cell.config(brand: carSearch[indexPath.item].brand ?? "", model: carSearch[indexPath.item].model ?? "", price: carSearch[indexPath.item].price ?? "", engine: carSearch[indexPath.item].engine ?? "", image: carSearch[indexPath.item].carImage ?? "")
+                cell.config(brand: carSearch[indexPath.item].brand ?? "",
+                            model: carSearch[indexPath.item].model ?? "",
+                            price: carSearch[indexPath.item].price ?? "",
+                            engine: carSearch[indexPath.item].engine ?? "",
+                            image: carSearch[indexPath.item].carImage ?? "")
                 
             } else {
-                cell.config(brand: car[indexPath.item].brand ?? "", model: car[indexPath.item].model ?? "", price: car[indexPath.item].price ?? "", engine: car[indexPath.item].engine ?? "", image: car[indexPath.item].carImage ?? "")
+                cell.config(brand: filteredCars[indexPath.item].brand ?? "",
+                            model: filteredCars[indexPath.item].model ?? "",
+                            price: filteredCars[indexPath.item].price ?? "",
+                            engine: filteredCars[indexPath.item].engine ?? "",
+                            image: filteredCars[indexPath.item].carImage ?? "")
+                
             }
             return cell
             
@@ -81,15 +92,23 @@ extension VehicleController: UICollectionViewDataSource, UICollectionViewDelegat
         else {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! CategoryCell
+                        cell.carCategoryLabel.text = category[indexPath.item]
+                        
+                        if indexPath == selectedCellIndexPath {
+                            cell.background.backgroundColor = UIColor.blue
+                        } else {
+                            cell.background.backgroundColor = UIColor.white
             
+            
+
             let standardCarCount = car.filter { $0.category == CarCategory.standard.rawValue }.count
             let prestigeCarCount = car.filter { $0.category == CarCategory.prestige.rawValue }.count
             let suvCarCount = car.filter { $0.category == CarCategory.suv.rawValue }.count
-            
-            
+
+
             cell.carImage.image = UIImage(named: category[indexPath.item])
             cell.carCategoryLabel.text = category[indexPath.item]
-            
+
             switch category[indexPath.item] {
             case CarCategory.standard.rawValue:
                 cell.carCountLabel.text = "\(standardCarCount)"
@@ -100,13 +119,7 @@ extension VehicleController: UICollectionViewDataSource, UICollectionViewDelegat
             default:
                 cell.carCountLabel.text = "0"
             }
-            
-            if indexPath == selectedCellIndexPath {
-                    
-                    cell.background.backgroundColor = UIColor.blue
-                } else {
-                  
-                    cell.background.backgroundColor = UIColor.white
+                   cell.background.backgroundColor = UIColor.white
                 }
 
                
@@ -133,36 +146,22 @@ extension VehicleController: UICollectionViewDataSource, UICollectionViewDelegat
        print("basanda isleyir ama sekiller gelmir")
         print(filteredCars)
         
-        let selectedCategory = category[indexPath.item]
-            
-        switch selectedCategory {
-               case CarCategory.standard.rawValue:
-                   filteredCars = car.filter { $0.category == CarCategory.standard.rawValue }
-               case CarCategory.prestige.rawValue:
-                   filteredCars = car.filter { $0.category == CarCategory.prestige.rawValue }
-               case CarCategory.suv.rawValue:
-                   filteredCars = car.filter { $0.category == CarCategory.suv.rawValue }
-               default:
-                   filteredCars = []
-           }
 
-//
-//           filteredCarsDataSource = filteredCars
-//           updateCarList(filteredCars: filteredCars)
-//
-//            listCollection.reloadData()
-//
         
-        
-        
+        if collectionView == categoryCollection {
+            
+            
+            selectedCellIndexPath = indexPath
+                       let selectedCategory = category[indexPath.item]
+                       filteredCars = car.filter { $0.category == selectedCategory }
+                       listCollection.reloadData()
+                
+
+            }
+
     }
         
-//    func updateCarList(filteredCars: [CarModel]) {
-//        carListDataSource = filteredCars
-//        listCollection.reloadData()
-//        filteredCarsDataSource = filteredCars
-//    }
-//
+
 }
 
 
