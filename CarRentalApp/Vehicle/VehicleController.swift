@@ -20,11 +20,10 @@ class VehicleController: UIViewController {
     var carSearch = [CarModel]()
     var search = false
     let searchController = UISearchController(searchResultsController: nil)
-    var categoryCounts: [String: Int] = [:]
+//    var categoryCounts: [String: Int] = [:]
     var filteredCars: [CarModel] = []
-    var carListDataSource: [CarModel] = []
     var selectedCellIndexPath: IndexPath?
-    var filteredCarsDataSource: [CarModel] = []
+
     
     
     
@@ -39,7 +38,7 @@ class VehicleController: UIViewController {
         fetchItems()
         configureSearchController()
         CellRegistration()
-        
+        title = "Car Rental"
         
         
     }

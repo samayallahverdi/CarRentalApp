@@ -82,7 +82,7 @@
                 <outlet property="carModel" destination="Ilu-dX-6C5" id="Elm-c0-cFW"/>
                 <outlet property="carPrice" destination="gds-ce-DRQ" id="ijN-ND-o7W"/>
             </connections>
-            <point key="canvasLocation" x="-160.30534351145039" y="-63.380281690140848"/>
+            <point key="canvasLocation" x="124" y="-3"/>
         </collectionViewCell>
     </objects>
     <resources>
