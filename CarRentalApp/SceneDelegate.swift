@@ -19,7 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         
-        if (UserDefaults.standard.string(forKey: "email") != nil) && (UserDefaults.standard.string(forKey: "password") != nil) && (UserDefaults.standard.bool(forKey: "isLogged")) {
+
+        if (UserDefaults.standard.bool(forKey: "isLogged")) {
             window = UIWindow(windowScene: windowScene)
             let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBarController") as! TabBarController
 //            controller.user.append(User(fullname: UserDefaults.standard.string(forKey: "fullname") ?? "",
