@@ -18,6 +18,8 @@ class CategoryCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        background.layer.cornerRadius = 20    }
+        background.layer.cornerRadius = 20
+        
+    }
 
 }

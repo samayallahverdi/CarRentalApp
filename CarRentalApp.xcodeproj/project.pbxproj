@@ -18,6 +18,9 @@
 		256B45E72AE80C98000530A3 /* CarListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 256B45E52AE80C98000530A3 /* CarListCell.xib */; };
 		256B45EB2AE80D00000530A3 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256B45E92AE80D00000530A3 /* CategoryCell.swift */; };
 		256B45EC2AE80D00000530A3 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 256B45EA2AE80D00000530A3 /* CategoryCell.xib */; };
+		25C0A48C2AEFDD7E001ED522 /* VehiclesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C0A48B2AEFDD7E001ED522 /* VehiclesController.swift */; };
+		25C0A4912AF12C9E001ED522 /* CarsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C0A48F2AF12C9E001ED522 /* CarsHeaderView.swift */; };
+		25C0A4922AF12C9E001ED522 /* CarsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25C0A4902AF12C9E001ED522 /* CarsHeaderView.xib */; };
 		25E5B0DA2AE7D60100593009 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E5B0D92AE7D60100593009 /* TabBarController.swift */; };
 		FE9D309C2AE3A6040004F029 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9D309B2AE3A6040004F029 /* AppDelegate.swift */; };
 		FE9D309E2AE3A6040004F029 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9D309D2AE3A6040004F029 /* SceneDelegate.swift */; };
@@ -36,6 +39,9 @@
 		256B45E52AE80C98000530A3 /* CarListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarListCell.xib; sourceTree = "<group>"; };
 		256B45E92AE80D00000530A3 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		256B45EA2AE80D00000530A3 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
+		25C0A48B2AEFDD7E001ED522 /* VehiclesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesController.swift; sourceTree = "<group>"; };
+		25C0A48F2AF12C9E001ED522 /* CarsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsHeaderView.swift; sourceTree = "<group>"; };
+		25C0A4902AF12C9E001ED522 /* CarsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarsHeaderView.xib; sourceTree = "<group>"; };
 		25E5B0D92AE7D60100593009 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		FE9D30982AE3A6040004F029 /* CarRentalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarRentalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE9D309B2AE3A6040004F029 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +164,9 @@
 				25E5B0DB2AE7D60800593009 /* TabBar */,
 				256B45E82AE80C9E000530A3 /* CarListCell */,
 				256B45ED2AE80D06000530A3 /* CategoryCell */,
+				25C0A48B2AEFDD7E001ED522 /* VehiclesController.swift */,
+				25C0A48F2AF12C9E001ED522 /* CarsHeaderView.swift */,
+				25C0A4902AF12C9E001ED522 /* CarsHeaderView.xib */,
 			);
 			path = CarRentalApp;
 			sourceTree = "<group>";
@@ -231,6 +240,7 @@
 				FE9D30AB2AE3A6060004F029 /* LaunchScreen.storyboard in Resources */,
 				FE9D30A82AE3A6060004F029 /* Assets.xcassets in Resources */,
 				256B45E72AE80C98000530A3 /* CarListCell.xib in Resources */,
+				25C0A4922AF12C9E001ED522 /* CarsHeaderView.xib in Resources */,
 				FE9D30A32AE3A6040004F029 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,9 +259,11 @@
 				253B64602AE67CCF00B86043 /* DataManager.swift in Sources */,
 				256B45E62AE80C98000530A3 /* CarListCell.swift in Sources */,
 				FE9D309C2AE3A6040004F029 /* AppDelegate.swift in Sources */,
+				25C0A48C2AEFDD7E001ED522 /* VehiclesController.swift in Sources */,
 				FE9D309E2AE3A6040004F029 /* SceneDelegate.swift in Sources */,
 				2530500D2AE6B189008CC30D /* LoginController.swift in Sources */,
 				256B45EB2AE80D00000530A3 /* CategoryCell.swift in Sources */,
+				25C0A4912AF12C9E001ED522 /* CarsHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
