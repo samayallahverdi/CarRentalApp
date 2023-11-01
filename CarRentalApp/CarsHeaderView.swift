@@ -8,6 +8,7 @@
 import UIKit
 import RealmSwift
 
+
 class CarsHeaderView: UICollectionReusableView {
 
     @IBOutlet weak var categoryCollection: UICollectionView!
@@ -21,6 +22,9 @@ class CarsHeaderView: UICollectionReusableView {
     var filteredCars: [CarModel] = []
     var selectedCellIndexPath: IndexPath?
     
+//    Step 1
+    var categorySelectionCallback: (([CarModel]) -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
        
@@ -33,8 +37,7 @@ class CarsHeaderView: UICollectionReusableView {
         CellRegistration()
         
     }
-    
-  
+
     
 }
 extension CarsHeaderView: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -110,6 +113,11 @@ extension CarsHeaderView: UICollectionViewDataSource, UICollectionViewDelegate {
             selectedCellIndexPath = indexPath
                        let selectedCategory = category[indexPath.item]
                        filteredCars = car.filter { $0.category == selectedCategory }
+            
+//             Step 2
+            categorySelectionCallback?(filteredCars)
+            
+            
                        categoryCollection.reloadData()
                 
 

@@ -21,8 +21,8 @@ class VehiclesController: UIViewController {
     var search = false
     var filteredCars: [CarModel] = []
     var selectedCellIndexPath: IndexPath?
-    
-    
+   
+    var carsHeaderView = CarsHeaderView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +34,15 @@ class VehiclesController: UIViewController {
         }
         fetchItems()
         CellRegistration()
+       
+//        Step 3
+        carsHeaderView.categorySelectionCallback = { cars in
+                   
+                    self.filteredCars = cars
+                    self.listCollection.reloadData()
+                }
+        
+      
     }
     
 
@@ -116,3 +125,4 @@ extension VehiclesController {
                             withReuseIdentifier: "\(CategoryCell.self)")
     }
 }
+
