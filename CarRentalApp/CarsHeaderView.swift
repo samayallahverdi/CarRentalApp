@@ -47,7 +47,7 @@ extension CarsHeaderView: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        //        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+    
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! CategoryCell
         cell.carCategoryLabel.text = category[indexPath.item]
@@ -77,7 +77,7 @@ extension CarsHeaderView: UICollectionViewDataSource, UICollectionViewDelegate {
             default:
                 cell.carCountLabel.text = "0"
             }
-            cell.background.backgroundColor = UIColor.white
+//            cell.background.backgroundColor = UIColor.white
         }
         
         
@@ -123,7 +123,9 @@ extension CarsHeaderView {
         let data = realm.objects(CarModel.self)
         car.append(contentsOf: data)
         categoryCollection?.reloadData()
-    }
+        
+              }
+          
 
     func CellRegistration() {
 
