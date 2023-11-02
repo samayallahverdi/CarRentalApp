@@ -153,73 +153,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oUb-YY-f7p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1316.793893129771" y="-1425.3521126760563"/>
-        </scene>
-        <!--Vehicle Controller-->
-        <scene sceneID="cPg-PO-N96">
-            <objects>
-                <viewController storyboardIdentifier="VehicleController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fvJ-VT-pSl" customClass="VehicleController" customModule="CarRentalApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5OS-ZB-gcI">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WMG-5Y-qR6">
-                                <rect key="frame" x="16" y="103" width="361" height="239"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="361" id="5Uf-L5-ltq"/>
-                                    <constraint firstAttribute="height" constant="239" id="DsM-w4-Odh"/>
-                                </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pf0-Ug-in2">
-                                    <size key="itemSize" width="200" height="250"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                                <connections>
-                                    <outlet property="dataSource" destination="fvJ-VT-pSl" id="8zy-Jh-hwm"/>
-                                    <outlet property="delegate" destination="fvJ-VT-pSl" id="nwh-yZ-e7D"/>
-                                </connections>
-                            </collectionView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mWX-pT-Lcb">
-                                <rect key="frame" x="16" y="362" width="361" height="400"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="361" id="ZN8-3D-1ya"/>
-                                    <constraint firstAttribute="height" constant="400" id="qzs-ui-d3J"/>
-                                </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AX2-Wp-Zck">
-                                    <size key="itemSize" width="350" height="350"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                                <connections>
-                                    <outlet property="dataSource" destination="fvJ-VT-pSl" id="7XK-xa-CbJ"/>
-                                    <outlet property="delegate" destination="fvJ-VT-pSl" id="GFh-6t-EiN"/>
-                                </connections>
-                            </collectionView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Sl6-9e-XqG"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
-                        <constraints>
-                            <constraint firstItem="WMG-5Y-qR6" firstAttribute="top" secondItem="Sl6-9e-XqG" secondAttribute="top" id="EiL-NS-yAQ"/>
-                            <constraint firstItem="mWX-pT-Lcb" firstAttribute="centerX" secondItem="Sl6-9e-XqG" secondAttribute="centerX" id="Fdx-M0-JlA"/>
-                            <constraint firstItem="mWX-pT-Lcb" firstAttribute="top" secondItem="WMG-5Y-qR6" secondAttribute="bottom" constant="20" id="cHY-dA-gcd"/>
-                            <constraint firstItem="WMG-5Y-qR6" firstAttribute="centerX" secondItem="Sl6-9e-XqG" secondAttribute="centerX" id="kz8-LC-f96"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="mkl-5U-mbd"/>
-                    <connections>
-                        <outlet property="categoryCollection" destination="WMG-5Y-qR6" id="JU3-wK-tgv"/>
-                        <outlet property="listCollection" destination="mWX-pT-Lcb" id="EtA-v8-Bjs"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AUE-TG-pYi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1323" y="-761"/>
+            <point key="canvasLocation" x="1317" y="-748"/>
         </scene>
         <!--Login Controller-->
         <scene sceneID="fiO-Dy-HGf">
@@ -327,10 +261,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Elh-fO-wSJ" kind="relationship" relationship="viewControllers" id="bUX-40-KLt"/>
+                        <segue destination="SWk-rb-hfa" kind="relationship" relationship="viewControllers" id="hfD-ak-rS0"/>
                         <segue destination="MAz-nh-KMv" kind="relationship" relationship="viewControllers" id="Hkk-Sg-uHr"/>
                         <segue destination="Fek-Iu-cS3" kind="relationship" relationship="viewControllers" id="aVL-X5-rOW"/>
-                        <segue destination="SWk-rb-hfa" kind="relationship" relationship="viewControllers" id="hfD-ak-rS0"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="INm-vy-VSy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -410,29 +343,10 @@
             <point key="canvasLocation" x="-2289.3129770992364" y="-392.25352112676057"/>
         </scene>
         <!--Vehicles-->
-        <scene sceneID="U7p-Tv-2cY">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Elh-fO-wSJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Vehicles" image="vehiclesTab" id="mo1-8o-CoJ"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dyM-xZ-j04">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="fvJ-VT-pSl" kind="relationship" relationship="rootViewController" id="Jhb-LP-tYA"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UEC-hG-lpi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="463" y="-760"/>
-        </scene>
-        <!--Item-->
         <scene sceneID="4DW-cS-l3P">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SWk-rb-hfa" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="DfQ-B9-BJl"/>
+                    <tabBarItem key="tabBarItem" title="Vehicles" image="vehiclesTab" id="DfQ-B9-BJl"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WTR-x4-tzj">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -445,7 +359,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XCG-ii-qIn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="463" y="-1425"/>
+            <point key="canvasLocation" x="462" y="-748"/>
         </scene>
     </scenes>
     <resources>

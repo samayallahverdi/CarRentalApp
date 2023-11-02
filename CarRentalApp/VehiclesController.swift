@@ -9,7 +9,6 @@ import UIKit
 import RealmSwift
 
 class VehiclesController: UIViewController {
-
     
     @IBOutlet weak var listCollection: UICollectionView!
     @IBOutlet weak var searchTextField: UITextField!
@@ -17,79 +16,58 @@ class VehiclesController: UIViewController {
     let realm = try! Realm()
     let category = ["Standard", "Prestige", "SUV"]
     var car = [CarModel]()
-    var carSearch = [CarModel]()
+//    var carSearch = [CarModel]()
     var search = false
-    var filteredCars: [CarModel] = []
     var selectedCellIndexPath: IndexPath?
-   
+    var originalCarItems = [CarModel]()
     var carsHeaderView = CarsHeaderView()
+    var filteredCars: [CarModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        car = originalCarItems
         if let url = realm.configuration.fileURL {
-
             print(url)
         }
         fetchItems()
         CellRegistration()
-       
-//        Step 3
-        carsHeaderView.categorySelectionCallback = { cars in
-                   
-                    self.filteredCars = cars
-                    self.listCollection.reloadData()
-                }
         
-      
+        
     }
     
-
+    
     @IBAction func searchAction(_ sender: Any) {
         
         let searchText = searchTextField.text ?? ""
-          if searchText.isEmpty {
-              search = false
-              listCollection.reloadData()
-          } else {
-              filteredCars = car.filter { $0.brand?.localizedCaseInsensitiveContains(searchText) == true }
-              search = true
-              listCollection.reloadData() 
-          }
-        
+        if searchText.isEmpty {
+            car = originalCarItems
+        } else {
+            filteredCars = originalCarItems.filter { $0.brand?.localizedCaseInsensitiveContains(searchText) == true }
+            car = filteredCars
+        }
+        listCollection.reloadData()
     }
-    
 }
 
 extension VehiclesController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if search {
-                return filteredCars.count
-            } else {
-                return car.count
-            }
-        
+
+            return car.count
+
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-     
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CarListCell", for: indexPath) as! CarListCell
         
-        var currentCar: CarModel
         
-          if search {
-              currentCar = filteredCars[indexPath.item]
-          } else {
-              currentCar = car[indexPath.item]
-          }
-        
-        cell.config(brand: currentCar.brand ?? "",
-                        model: currentCar.model ?? "",
-                        price: currentCar.price ?? "",
-                        engine: currentCar.engine ?? "",
-                        image: currentCar.carImage ?? "")
+        cell.config(brand: car[indexPath.item].brand ?? "",
+                    model: car[indexPath.item].model ?? "",
+                    price: car[indexPath.item].price ?? "",
+                    engine: car[indexPath.item].engine ?? "",
+                    image: car[indexPath.item].carImage ?? "")
         
         
         return cell
@@ -101,11 +79,16 @@ extension VehiclesController: UICollectionViewDataSource, UICollectionViewDelega
     // Header configuration
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader {
-              let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CarsHeaderView", for: indexPath)
-              return headerView
-          }
-          return UICollectionReusableView()
+        
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CarsHeaderView", for: indexPath) as! CarsHeaderView
+        headerView.categorySelectionCallback = {category in
+            print("aueeeee\(category)")
+            let filteredCars = self.originalCarItems.filter {$0.category == category}
+            print("filtered aueee\(filteredCars)")
+            self.car = filteredCars
+            self.listCollection.reloadData()
+        }
+        return headerView
     }
     
 }
@@ -114,15 +97,16 @@ extension VehiclesController {
         car.removeAll()
         let data = realm.objects(CarModel.self)
         car.append(contentsOf: data)
-        listCollection?.reloadData()
+        originalCarItems.append(contentsOf: data)
+        listCollection.reloadData()
     }
     
     func CellRegistration() {
         
         listCollection.register(UINib(nibName: "CarListCell", bundle: nil), forCellWithReuseIdentifier: "CarListCell")
         listCollection.register(UINib(nibName: "\(CategoryCell.self)", bundle: nil),
-                            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                            withReuseIdentifier: "\(CategoryCell.self)")
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: "\(CategoryCell.self)")
     }
 }
 

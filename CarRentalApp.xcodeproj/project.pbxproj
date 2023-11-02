@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2530500D2AE6B189008CC30D /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2530500C2AE6B189008CC30D /* LoginController.swift */; };
-		2530500F2AE6B1AC008CC30D /* VehicleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2530500E2AE6B1AC008CC30D /* VehicleController.swift */; };
 		253050112AE6B1CD008CC30D /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253050102AE6B1CD008CC30D /* SearchController.swift */; };
 		253050132AE6B219008CC30D /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253050122AE6B219008CC30D /* AccountController.swift */; };
 		253B64602AE67CCF00B86043 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253B645F2AE67CCF00B86043 /* DataManager.swift */; };
@@ -31,7 +30,6 @@
 
 /* Begin PBXFileReference section */
 		2530500C2AE6B189008CC30D /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		2530500E2AE6B1AC008CC30D /* VehicleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleController.swift; sourceTree = "<group>"; };
 		253050102AE6B1CD008CC30D /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		253050122AE6B219008CC30D /* AccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		253B645F2AE67CCF00B86043 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -68,7 +66,6 @@
 		2530501B2AE6C211008CC30D /* Vehicle */ = {
 			isa = PBXGroup;
 			children = (
-				2530500E2AE6B1AC008CC30D /* VehicleController.swift */,
 			);
 			path = Vehicle;
 			sourceTree = "<group>";
@@ -253,7 +250,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				253050132AE6B219008CC30D /* AccountController.swift in Sources */,
-				2530500F2AE6B1AC008CC30D /* VehicleController.swift in Sources */,
 				253050112AE6B1CD008CC30D /* SearchController.swift in Sources */,
 				25E5B0DA2AE7D60100593009 /* TabBarController.swift in Sources */,
 				253B64602AE67CCF00B86043 /* DataManager.swift in Sources */,

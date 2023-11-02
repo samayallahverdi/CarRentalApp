@@ -10,138 +10,105 @@ import RealmSwift
 
 
 class CarsHeaderView: UICollectionReusableView {
-
+    
     @IBOutlet weak var categoryCollection: UICollectionView!
     
     let realm = try! Realm()
     let category = ["Standard", "Prestige", "SUV"]
-    var car = [CarModel]()
-    var carSearch = [CarModel]()
     var search = false
-
-    var filteredCars: [CarModel] = []
+    var categoryCounts = [String: Int]()
     var selectedCellIndexPath: IndexPath?
     
-//    Step 1
-    var categorySelectionCallback: (([CarModel]) -> Void)?
+    //    Step 1
+    var categorySelectionCallback: ((String) -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       
+        
         if let url = realm.configuration.fileURL {
-
             print(url)
         }
         
-        fetchItems()
         CellRegistration()
         
     }
-
+    
     
 }
 extension CarsHeaderView: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        category.count
         
+        for category in CarCategory.allCases {
+            let categoryCars = realm.objects(CarModel.self).filter("category = %@", category.rawValue)
+            categoryCounts[category.rawValue] = categoryCars.count
+        }
+        return category.count
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-    
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! CategoryCell
-        cell.carCategoryLabel.text = category[indexPath.item]
+        let category = CarCategory.allCases[indexPath.item]
+        cell.carCategoryLabel.text = category.rawValue
+        cell.carImage.image = UIImage(named: category.rawValue)
+        
         
         if indexPath == selectedCellIndexPath {
             cell.background.backgroundColor = UIColor.blue
+            cell.carCategoryLabel.textColor = .white
+            cell.carCountLabel.textColor = .white
         } else {
             cell.background.backgroundColor = UIColor.white
-            
-            
-            
-            let standardCarCount = car.filter { $0.category == CarCategory.standard.rawValue }.count
-            let prestigeCarCount = car.filter { $0.category == CarCategory.prestige.rawValue }.count
-            let suvCarCount = car.filter { $0.category == CarCategory.suv.rawValue }.count
-            
-            
-            cell.carImage.image = UIImage(named: category[indexPath.item])
-            cell.carCategoryLabel.text = category[indexPath.item]
-            
-            switch category[indexPath.item] {
-            case CarCategory.standard.rawValue:
-                cell.carCountLabel.text = "\(standardCarCount)"
-            case CarCategory.prestige.rawValue:
-                cell.carCountLabel.text = "\(prestigeCarCount)"
-            case CarCategory.suv.rawValue:
-                cell.carCountLabel.text = "\(suvCarCount)"
-            default:
-                cell.carCountLabel.text = "0"
-            }
-//            cell.background.backgroundColor = UIColor.white
+            cell.carCategoryLabel.textColor = .black
+            cell.carCountLabel.textColor = .black
         }
         
-        
-        
-        
+        if let count = categoryCounts[category.rawValue] {
+            cell.carCountLabel.text = "\(count)"
+        } else {
+            cell.carCountLabel.text = "0"
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let category = CarCategory.allCases[indexPath.item]
+    
         
-        if let previousSelectedIndexPath = selectedCellIndexPath {
-              
-                let previousSelectedCell = collectionView.cellForItem(at: previousSelectedIndexPath) as? CategoryCell
-                previousSelectedCell?.background.backgroundColor = UIColor.white
+        if let previousIndexPath = selectedCellIndexPath {         // Deselect the previously selected cell and reset its background color
+            collectionView.deselectItem(at: previousIndexPath, animated: true)
+            if let previousCell = collectionView.cellForItem(at: previousIndexPath) as? CategoryCell {
+                previousCell.background.backgroundColor = .white // Change to the default background color
+                previousCell.carCategoryLabel.textColor = .black
+                previousCell.carCountLabel.textColor = .lightGray
             }
-
-            selectedCellIndexPath = indexPath
-
-            let selectedCell = collectionView.cellForItem(at: indexPath) as? CategoryCell
-            selectedCell?.background.backgroundColor = UIColor.blue
+        }
         
-       print("basanda isleyir ama sekiller gelmir")
-        print(filteredCars)
+        selectedCellIndexPath = indexPath
+        if let selectedCell = collectionView.cellForItem(at: indexPath) as? CategoryCell {
+           
+            selectedCell.background.backgroundColor = .blue
+            selectedCell.carCategoryLabel.textColor = .white
+            selectedCell.carCountLabel.textColor = .white
+        }
+        categorySelectionCallback?(category.rawValue)
+        categoryCollection.reloadData()
         
-
-        
-        if collectionView == categoryCollection {
-            
-            
-            selectedCellIndexPath = indexPath
-                       let selectedCategory = category[indexPath.item]
-                       filteredCars = car.filter { $0.category == selectedCategory }
-            
-//             Step 2
-            categorySelectionCallback?(filteredCars)
-            
-            
-                       categoryCollection.reloadData()
-                
-
-            }
     }
+
+
 }
 
 extension CarsHeaderView {
-    func fetchItems() {
-        car.removeAll()
-        let data = realm.objects(CarModel.self)
-        car.append(contentsOf: data)
-        categoryCollection?.reloadData()
-        
-              }
-          
-
     func CellRegistration() {
-
+        
         categoryCollection.register(UINib(nibName: "CategoryCell", bundle: nil), forCellWithReuseIdentifier: "CategoryCell")
-
-//                categoryCollection.register(UINib(nibName: "\(CategoryCell.self)", bundle: nil),
-//                    forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-//                    withReuseIdentifier: "\(CategoryCell.self)")
-
+        
+        //                categoryCollection.register(UINib(nibName: "\(CategoryCell.self)", bundle: nil),
+        //                    forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+        //                    withReuseIdentifier: "\(CategoryCell.self)")
+        
     }
 }
+
