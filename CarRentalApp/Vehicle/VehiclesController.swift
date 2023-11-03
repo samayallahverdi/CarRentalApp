@@ -16,7 +16,6 @@ class VehiclesController: UIViewController {
     let realm = try! Realm()
     let category = ["Standard", "Prestige", "SUV"]
     var car = [CarModel]()
-//    var carSearch = [CarModel]()
     var search = false
     var selectedCellIndexPath: IndexPath?
     var originalCarItems = [CarModel]()
@@ -82,9 +81,8 @@ extension VehiclesController: UICollectionViewDataSource, UICollectionViewDelega
         
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CarsHeaderView", for: indexPath) as! CarsHeaderView
         headerView.categorySelectionCallback = {category in
-            print("aueeeee\(category)")
             let filteredCars = self.originalCarItems.filter {$0.category == category}
-            print("filtered aueee\(filteredCars)")
+            print("filtered \(filteredCars)")
             self.car = filteredCars
             self.listCollection.reloadData()
         }

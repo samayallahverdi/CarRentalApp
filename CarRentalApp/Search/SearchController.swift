@@ -69,7 +69,7 @@ extension SearchController: UISearchBarDelegate, UISearchResultsUpdating {
         if let searchText = searchController.searchBar.text, !searchText.isEmpty {
             search = true
             carSearch = carList.filter { car in
-                if let model = car.model {
+                if let model = car.brand {
                     return model.lowercased().contains(searchText.lowercased())
                 }
                 return false

@@ -66,6 +66,7 @@
 		2530501B2AE6C211008CC30D /* Vehicle */ = {
 			isa = PBXGroup;
 			children = (
+				25C0A48B2AEFDD7E001ED522 /* VehiclesController.swift */,
 			);
 			path = Vehicle;
 			sourceTree = "<group>";
@@ -120,6 +121,15 @@
 			path = CategoryCell;
 			sourceTree = "<group>";
 		};
+		25C0A4952AF4EDDD001ED522 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				25C0A48F2AF12C9E001ED522 /* CarsHeaderView.swift */,
+				25C0A4902AF12C9E001ED522 /* CarsHeaderView.xib */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
 		25E5B0DB2AE7D60800593009 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +145,7 @@
 				FE9D30A92AE3A6060004F029 /* LaunchScreen.storyboard */,
 				FE9D30A72AE3A6060004F029 /* Assets.xcassets */,
 				FE9D30A12AE3A6040004F029 /* Main.storyboard */,
+				FE9D30AC2AE3A6060004F029 /* Info.plist */,
 				FE9D30992AE3A6040004F029 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -155,15 +166,12 @@
 				2530501F2AE6C23B008CC30D /* Helper */,
 				2530501E2AE6C233008CC30D /* Login */,
 				2530501B2AE6C211008CC30D /* Vehicle */,
+				25C0A4952AF4EDDD001ED522 /* Header */,
 				2530501C2AE6C21F008CC30D /* Search */,
 				2530501D2AE6C227008CC30D /* Account */,
-				FE9D30AC2AE3A6060004F029 /* Info.plist */,
 				25E5B0DB2AE7D60800593009 /* TabBar */,
 				256B45E82AE80C9E000530A3 /* CarListCell */,
 				256B45ED2AE80D06000530A3 /* CategoryCell */,
-				25C0A48B2AEFDD7E001ED522 /* VehiclesController.swift */,
-				25C0A48F2AF12C9E001ED522 /* CarsHeaderView.swift */,
-				25C0A4902AF12C9E001ED522 /* CarsHeaderView.xib */,
 			);
 			path = CarRentalApp;
 			sourceTree = "<group>";
